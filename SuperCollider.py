@@ -32,8 +32,9 @@ class Sc_startCommand(sublime_plugin.WindowCommand):
 
         # start supercollider
         if Sc_startCommand.sclang_thread is None or not Sc_startCommand.sclang_thread.isAlive():
-            sc_dir = 'C:\\Program Files\\SuperCollider-3.5-rc2\\'
-            sc_exe = 'sclang'
+            settings = sublime.load_settings("SuperCollider.sublime-settings")
+            sc_dir = settings.get("sc_dir")
+            sc_exe = settings.get("sc_exe")
             print "Starting SuperCollider : "+sc_dir+sc_exe
             Sc_startCommand.sclang_process = subprocess.Popen(sc_exe, cwd=sc_dir, bufsize=1, close_fds=ON_POSIX, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.STDOUT, universal_newlines=True, shell=True)
             Sc_startCommand.sclang_queue = Queue()
