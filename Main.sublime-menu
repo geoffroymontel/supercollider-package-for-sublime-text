@@ -12,8 +12,9 @@
             { "command": "sc_stop", "caption": "Stop sclang", "mnemonic": "o" },
             { "command": "sc_send", "caption": "Evaluate current line", "mnemonic": "e" },
             { "command": "sc_stop_all_sounds", "caption": "Stop all sounds", "mnemonic": "s" },
+            { "command": "sc_get_help", "caption": "Get help for selected word on SCCode.org", "mnemonic": "h" },
             { "command": "sc_show_console", "caption": "Show console", "mnemonic": "c" },
-            { "command": "sc_hide_console", "caption": "Hide console", "mnemonic": "h" }
+            { "command": "sc_hide_console", "caption": "Hide console", "mnemonic": "i" }
         ]
     }
   ]

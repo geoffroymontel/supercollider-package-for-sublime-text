@@ -23,9 +23,23 @@ http://supercollider.sourceforge.net
   - start and stop sclang, 
   - evaluate a line (ctrl+enter), 
   - stop all sounds (ctrl+.), 
+  - search word in SCCode.org,
   - and show/hide the console.  
-- If your line starts with the character '(', it should evaluate the whole expression. But it does not work right now. Sorry.  
+- If your line starts with the character '(', it should evaluate the whole expression.  
 
 ## Known bugs
-- muliple lines evaluation does not work
+- on Windows XP
+  
+  Server.local.boot;
 
+does not work.
+You should use 
+
+  Server.default = s = Server.internal;
+  s.boot;
+
+instead.
+
+## Authors
+[Geoffroy Montel](http://github.com/geoffroy.montel)
+[RFWatson](https://github.com/rfwatson)

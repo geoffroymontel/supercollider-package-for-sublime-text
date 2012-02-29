@@ -2,6 +2,8 @@ import sublime, sublime_plugin
 import sys
 import subprocess
 import threading
+import os
+import webbrowser
 
 try:
     from Queue import Queue, Empty
@@ -36,7 +38,7 @@ class Sc_startCommand(sublime_plugin.WindowCommand):
             sc_dir = settings.get("sc_dir")
             sc_exe = settings.get("sc_exe")
             print "Starting SuperCollider : "+sc_dir+sc_exe
-            Sc_startCommand.sclang_process = subprocess.Popen(sc_exe, cwd=sc_dir, bufsize=1, close_fds=ON_POSIX, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.STDOUT, universal_newlines=True, shell=True)
+            Sc_startCommand.sclang_process = subprocess.Popen([sc_exe, '-i', 'sublime'], cwd=sc_dir, bufsize=1, close_fds=ON_POSIX, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.STDOUT, universal_newlines=True, shell=True)
             Sc_startCommand.sclang_queue = Queue()
             Sc_startCommand.sclang_thread = threading.Thread(target=enqueue_output, args=(Sc_startCommand.sclang_process.stdout, Sc_startCommand.sclang_queue))
             Sc_startCommand.sclang_thread.daemon = True # thread dies with the program
@@ -80,7 +82,7 @@ class Sc_stopCommand(sublime_plugin.WindowCommand):
     def run(self):
         print "Stopping supercollider"
         if Sc_startCommand.sclang_thread is not None and Sc_startCommand.sclang_thread.isAlive():
-            Sc_startCommand.sclang_process.stdin.write("0.exit;\n")
+            Sc_startCommand.sclang_process.stdin.write("0.exit;\x0c")
             Sc_startCommand.sclang_process.stdin.flush()
 
 # command to send the current line to sclang
@@ -92,18 +94,17 @@ class Sc_sendCommand(sublime_plugin.WindowCommand):
             point = sel[0]   
             line = view.line(point)
             line_str = view.substr(line)
-            print "current line = "+line_str
             if line_str[0] == '(':
                 view.run_command("expand_selection", {"to": "brackets"})
                 sel = view.sel()
                 region = view.line(sel[0])
-                print "current region = "
                 lines = view.substr(region).split("\n")
                 for l in lines:
-                    Sc_startCommand.sclang_process.stdin.write(l+"\n")
-                    Sc_startCommand.sclang_process.stdin.flush()
+                    Sc_startCommand.sclang_process.stdin.write(l)
+                Sc_startCommand.sclang_process.stdin.write("\x0c")
+                Sc_startCommand.sclang_process.stdin.flush()
             else:
-                Sc_startCommand.sclang_process.stdin.write(view.substr(line)+"\n")
+                Sc_startCommand.sclang_process.stdin.write(view.substr(line)+"\x0c")
                 Sc_startCommand.sclang_process.stdin.flush()
 
 # command to show the supercollider console
@@ -124,5 +125,19 @@ class Sc_hide_consoleCommand(sublime_plugin.WindowCommand):
 class Sc_stop_all_soundsCommand(sublime_plugin.WindowCommand):
     def run(self):
         if Sc_startCommand.sclang_thread is not None and Sc_startCommand.sclang_thread.isAlive():
-            Sc_startCommand.sclang_process.stdin.write("s.freeAll;\n")
+            Sc_startCommand.sclang_process.stdin.write("thisProcess.stop;\x0c")
             Sc_startCommand.sclang_process.stdin.flush()
+
+# search for help on current word on SCCode.org
+class Sc_get_helpCommand(sublime_plugin.WindowCommand):
+    sccode_search_url = None
+
+    def run(self):
+        if Sc_get_helpCommand.sccode_search_url is None:
+            settings = sublime.load_settings("SuperCollider.sublime-settings")
+            Sc_get_helpCommand.sccode_search_url = settings.get("sccode_search_url")
+        view = self.window.active_view()
+        sel = view.sel()
+        point = sel[0]
+        word = view.word(point)
+        webbrowser.open_new_tab(Sc_get_helpCommand.sccode_search_url+view.substr(word))
