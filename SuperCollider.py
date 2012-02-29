@@ -62,7 +62,7 @@ class Sc_startCommand(sublime_plugin.WindowCommand):
                     scReturnedSomething = False
                 else:
                     somethingHappened = True 
-                    Sc_startCommand.output_view.insert(edit, Sc_startCommand.output_view.size(), line.decode(sys.getfilesystemencoding(), 'ignore'))        
+                    Sc_startCommand.output_view.insert(edit, Sc_startCommand.output_view.size(), line)        
            
             Sc_startCommand.output_view.end_edit(edit)
 
@@ -94,7 +94,7 @@ class Sc_sendCommand(sublime_plugin.WindowCommand):
             point = sel[0]   
             line = view.line(point)
             line_str = view.substr(line)
-            if line_str[0] == '(':
+            if line_str[0] == '(' or line_str[0] == ')':
                 view.run_command("expand_selection", {"to": "brackets"})
                 sel = view.sel()
                 region = view.line(sel[0])
