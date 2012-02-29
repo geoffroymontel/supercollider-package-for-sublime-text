@@ -30,16 +30,16 @@ http://supercollider.sourceforge.net
 ## Known bugs
 - on Windows XP
   
-  Server.local.boot;
+    Server.local.boot;
 
 does not work.
 You should use 
 
-  Server.default = s = Server.internal;
-  s.boot;
+    Server.default = s = Server.internal;
+    s.boot;
 
 instead.
 
 ## Authors
-[Geoffroy Montel](http://github.com/geoffroy.montel)
+[Geoffroy Montel](http://github.com/geoffroy.montel)  
 [RFWatson](https://github.com/rfwatson)
