@@ -96,16 +96,13 @@ class Sc_sendCommand(sublime_plugin.WindowCommand):
             line_str = view.substr(line)
             if line_str[0] == '(' or line_str[0] == ')':
                 view.run_command("expand_selection", {"to": "brackets"})
-                sel = view.sel()
-                region = view.line(sel[0])
-                lines = view.substr(region).split("\n")
-                for l in lines:
-                    Sc_startCommand.sclang_process.stdin.write(l.encode()+"\n")
-                Sc_startCommand.sclang_process.stdin.write("\x0c")
-                Sc_startCommand.sclang_process.stdin.flush()
-            else:
-                Sc_startCommand.sclang_process.stdin.write(view.substr(line).encode()+"\x0c")
-                Sc_startCommand.sclang_process.stdin.flush()
+            sel = view.sel()
+            region = view.line(sel[0])
+            lines = view.substr(region).split("\n")
+            for l in lines:
+                Sc_startCommand.sclang_process.stdin.write(l.encode()+"\n")
+            Sc_startCommand.sclang_process.stdin.write("\x0c")
+            Sc_startCommand.sclang_process.stdin.flush()
 
 # command to show the supercollider console
 class Sc_show_consoleCommand(sublime_plugin.WindowCommand):

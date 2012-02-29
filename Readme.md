@@ -1,6 +1,7 @@
 # Supercollider package for Sublime Text 2
 
 Tested on Windows XP only at the moment.  
+You will need SC 3.5 RC2 minimum.  
 Feel free to test it on other environments, fork and pull.  
 
 The syntax highlighting comes from RFWatson's SuperCollider TM Bundle  
@@ -21,14 +22,14 @@ http://supercollider.sourceforge.net
 - Restart Sublime Text 2  
 - In Tools, there is a new Supercollider sub menu which allows you to :
   - start and stop sclang, 
-  - evaluate a line (ctrl+enter), 
+  - evaluate a line or selection (ctrl+enter), 
   - stop all sounds (ctrl+.), 
   - search word in SCCode.org,
   - and show/hide the console.  
-- If your line starts with the character '(', it should evaluate the whole expression.  
+- If your line starts with the character '(' or ')', it should evaluate the whole expression.  
 
 ## Known bugs
-- on Windows XP
+- on Windows XP  
 
     Server.local.boot;
 
@@ -42,4 +43,4 @@ instead.
 
 ## Authors
 [Geoffroy Montel](http://github.com/geoffroy.montel)  
-[RFWatson](https://github.com/rfwatson)
+[RFWatson](https://github.com/rfwatson)  
