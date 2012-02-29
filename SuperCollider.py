@@ -100,11 +100,11 @@ class Sc_sendCommand(sublime_plugin.WindowCommand):
                 region = view.line(sel[0])
                 lines = view.substr(region).split("\n")
                 for l in lines:
-                    Sc_startCommand.sclang_process.stdin.write(l)
+                    Sc_startCommand.sclang_process.stdin.write(l.encode()+"\n")
                 Sc_startCommand.sclang_process.stdin.write("\x0c")
                 Sc_startCommand.sclang_process.stdin.flush()
             else:
-                Sc_startCommand.sclang_process.stdin.write(view.substr(line)+"\x0c")
+                Sc_startCommand.sclang_process.stdin.write(view.substr(line).encode()+"\x0c")
                 Sc_startCommand.sclang_process.stdin.flush()
 
 # command to show the supercollider console

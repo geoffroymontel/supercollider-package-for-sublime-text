@@ -29,7 +29,7 @@ http://supercollider.sourceforge.net
 
 ## Known bugs
 - on Windows XP
-  
+
     Server.local.boot;
 
 does not work.
