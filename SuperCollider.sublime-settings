@@ -1,6 +1,6 @@
 {
     // SuperCollider directory (use double \\ in Windows)
-    "sc_dir": "C:\\audio\\SuperCollider-3.5-rc2\\",
+    "sc_dir": "C:\\Program Files\\SuperCollider-3.5-rc2",
 
     // SCLang command name
     "sc_exe": "sclang",
