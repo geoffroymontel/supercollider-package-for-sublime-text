@@ -1,10 +1,14 @@
 {
     // SuperCollider directory (use double \\ in Windows)
-    "sc_dir": "C:\\Program Files\\SuperCollider-3.5-rc2\\",
+    "sc_dir": "C:\\audio\\SuperCollider-3.5-rc2\\",
 
     // SCLang command name
     "sc_exe": "sclang",
 
     // URL of SCCode search engine
-    "sccode_search_url": "http://sccode.org/search?q="
+    // two alternatives :
+    // http://doc.sccode.org/Search.html#
+    // or
+    // http://sccode.org/search?q=
+    "sccode_search_url": "http://doc.sccode.org/Search.html#"
 }

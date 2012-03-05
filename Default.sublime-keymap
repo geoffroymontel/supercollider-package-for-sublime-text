@@ -4,6 +4,8 @@
   },
   {
     "keys": ["ctrl+."], "command": "sc_stop_all_sounds"
+  },
+  {
+    "keys": ["ctrl+shift+,"], "command": "sc_get_help"
   }
-
 ]
