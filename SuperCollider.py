@@ -91,10 +91,11 @@ class Sc_sendCommand(sublime_plugin.WindowCommand):
         if Sc_startCommand.sclang_thread is not None and Sc_startCommand.sclang_thread.isAlive():
             view = self.window.active_view()
             sel = view.sel()
-            point = sel[0]   
+            point = sel[0]
             line = view.line(point)
             line_str = view.substr(line)
-            if line_str[0] == '(' or line_str[0] == ')':
+            # if the selection comprises of only character and it's a ( or ), expand
+            if (point.a == point.b) and (line_str[0] == '(' or line_str[0] == ')'):
                 view.run_command("expand_selection", {"to": "brackets"})
             sel = view.sel()
             region = view.line(sel[0])
