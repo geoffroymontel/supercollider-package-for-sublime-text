@@ -1,0 +1,49 @@
+{ "name": "Supercollider Help",
+	"scopeName": "text.schelp",
+	"fileTypes": ["schelp"],
+	"patterns": [
+		{	"match": "argument::",
+			"name": "entity.other.attribute-name",
+			"comment": "argument"
+		},
+
+		{	"match": "^(.+)::",
+			"name": "entity.name.tag",
+			"comment": "tags"
+		},
+
+		{  "name": "markup.underline.link",
+			"begin": "(link)::",
+			"beginCaptures": {
+			"0": {
+			 	"name": "keyword.raw" }
+			},
+			"end": "(::)",
+			"endCaptures": {
+				"0": { "name": "keyword.raw" }
+			},
+			"patterns": [
+				{  "name": "markup.underline.link",
+					"match": ".+"
+				}
+			],
+			"contentName": "link"
+		},
+		{  "name": "source.supercollider.embedded.schelp",
+			"begin": "^(code::)",
+			"beginCaptures": {
+			},
+			"end": "(::)",
+			"endCaptures": {
+			},
+			"patterns": [
+				{
+					"include": "source.supercollider"
+				}
+			],
+			"contentName": "embedded sc code",
+			"comment": "not working"
+		}
+	],
+	"uuid": "7cd51487-611b-46cb-b2fd-3c768e03ea11"
+}
