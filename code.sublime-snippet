@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[code::
+$1
+::
+]]></content>
+    <tabTrigger>code</tabTrigger>
+    <scope>text.schelp</scope>
+    <description>code block</description>
+</snippet>
