@@ -26,7 +26,8 @@ http://supercollider.sourceforge.net
   - stop all sounds (ctrl+.), 
   - search word in SCCode.org,
   - and show/hide the console.  
-- If your line starts with the character '(' or ')', it should evaluate the whole expression.  
+- If your line starts with the character '(' or ')', it should evaluate the whole expression.
+- Syntax definition/coloring by CrucialFelix
 
 ## Known bugs
 - on Windows XP  
@@ -43,4 +44,5 @@ instead.
 
 ## Authors
 [Geoffroy Montel](http://github.com/geoffroy.montel)  
-[RFWatson](https://github.com/rfwatson)  
+[RFWatson](https://github.com/rfwatson)
+[CrucialFelix](https://github.com/crucialfelix)
