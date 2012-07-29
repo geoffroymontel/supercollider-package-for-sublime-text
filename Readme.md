@@ -44,5 +44,5 @@ instead.
 
 ## Authors
 [Geoffroy Montel](http://github.com/geoffroy.montel)  
-[RFWatson](https://github.com/rfwatson)
+[RFWatson](https://github.com/rfwatson)  
 [CrucialFelix](https://github.com/crucialfelix)
