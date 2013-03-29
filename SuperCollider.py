@@ -123,7 +123,7 @@ class Sc_hide_consoleCommand(sublime_plugin.WindowCommand):
 class Sc_stop_all_soundsCommand(sublime_plugin.WindowCommand):
     def run(self):
         if Sc_startCommand.sclang_thread is not None and Sc_startCommand.sclang_thread.isAlive():
-            Sc_startCommand.sclang_process.stdin.write("thisProcess.stop;\x0c")
+            Sc_startCommand.sclang_process.stdin.write("thisProcess.stop;\n\x0c")
             Sc_startCommand.sclang_process.stdin.flush()
 
 # search for help on current word on SCCode.org
